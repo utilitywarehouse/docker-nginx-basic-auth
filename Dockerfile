@@ -8,6 +8,11 @@ WORKDIR /opt
 
 RUN apk add --no-cache gettext
 
+# remove base images conf
+RUN rm /etc/nginx/nginx.conf
+# add ours
+ADD nginx.conf /etc/nginx/nginx.conf
+
 COPY auth.conf auth.htpasswd launch.sh ./
 
 CMD ["./launch.sh"]
